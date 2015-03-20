@@ -9,7 +9,7 @@ We've prepared the following repository. It's a building block for you to play w
 
 The rest, and what you do with this boilerplate is up to you. Add, remove, rebuild, destroy. Do whatever you want. Just build something cool :)
 
-Send us your fork when you're done, blow our socks off and show us your awesomeness.
+**[Email](mailto://hr@smove.sg) us with a link to your fork when you're done, blow our socks off and show us your awesomeness.**
 
 Cheers.
 
