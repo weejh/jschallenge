@@ -11,15 +11,20 @@
 
 </div>
 
-<div >
+<!-- <div >
   <ul>
     <li ng-repeat="car in cars">
-      <span>{{car.description}}</span>
+      <span>{{car.parking_shortname}}</span>
       <span>{{car.latitude}}</span>
-
-      <span>{{car.fleet_category.remarks}}</span>
+      <span>{{car.longitude}}</span>
     </li>
   </ul>
-</div>
+</div> -->
 
-<my-maps id='map'></my-maps>
+
+<div ng-app="jschallengeApp" ng-controller="MainCtrl">
+    <div id="map"></div>
+    <div id="class" ng-repeat="marker in markers | orderBy : 'title'">
+         <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.title}}</a>
+    </div>
+</div>
