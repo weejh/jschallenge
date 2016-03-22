@@ -22,9 +22,9 @@
 </div> -->
 
 
-<div ng-app="jschallengeApp" ng-controller="MainCtrl">
+<div ng-app="jschallengeApp" >
     <div id="map"></div>
     <div id="class" ng-repeat="marker in markers | orderBy : 'title'">
-         <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.title}}</a>
+         <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.title}}  | Cars available:{{marker.cars_available}}</a>
     </div>
 </div>

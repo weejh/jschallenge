@@ -27,8 +27,6 @@ myCar.controller('MainCtrl', function($scope, $http) {
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };
 
-    $scope.map = new google.maps.Map(document.getElementById('map'), mapOptions);
-
     $scope.markers = [];
 
     var infoWindow = new google.maps.InfoWindow();
@@ -38,29 +36,50 @@ myCar.controller('MainCtrl', function($scope, $http) {
         var marker = new google.maps.Marker({
             map: $scope.map,
             position: new google.maps.LatLng(info.latitude, info.longitude),
-            title: info.parking_name
+            animation: google.maps.Animation.DROP,
+            title: info.parking_shortname,
+            cars_available: info.cars_available
         });
-        marker.content = '<div class="infoWindowContent">' + info.description + '</div>';
+        marker.content =  '<div class="infoWindowContent">' +
+                          '<span>' + 'Cars available: ' + info.cars_available + '<br>' + '</span>' +
+                          '<span>' + 'Location: ' + info.parking_name + '<br>' + '</span>' +
+                          '<span>' + 'Detail: ' + info.description + '<br>' + '</span>' +
+                          '</div>';
 
         google.maps.event.addListener(marker, 'click', function(){
             infoWindow.setContent('<h2>' + marker.title + '</h2>' + marker.content);
             infoWindow.open($scope.map, marker);
+            $scope.map.setZoom(13);
         });
 
         $scope.markers.push(marker);
 
     };
 
-    $scope.cars.forEach(function (car) {
-      // console.log(car.latitude, car.longitude);
-      createMarker(car);
+    var drawMap =  function () {
+      $scope.map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
+      $scope.cars.forEach(function (car) {
+        createMarker(car);
+
+      });
+    };
+
+    drawMap();
+
+    $scope.openInfoWindow = function(e, selectedMarker){
+        e.preventDefault();
+        google.maps.event.trigger(selectedMarker, 'click');
+    };
+
+    google.maps.event.addListener(infoWindow, 'closeclick', function(){
+        drawMap();
     });
+
 
   }).error(function(err) {
     // Hum, this is odd ... contact us...
     console.error(err);
   });
-
 
 });
