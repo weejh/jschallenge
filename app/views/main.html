@@ -22,10 +22,40 @@
 </div> -->
 
 
-<div>
+<div >
     <div id="map"></div>
+
+
     <div>List of car availability</div>
-    <div id="class" ng-repeat="marker in markers | orderBy : 'title'">
-         <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.title}}  | Cars available:{{marker.cars_available}}</a>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-2">
+      <!--Sidebar content-->
+
+        Search: <input type="search" ng-model="queryText">
+
+      </div>
+
+
+      <div class="col-md-10">
+        <!--Body content-->
+
+        <ul class="marker">
+          <!-- <li ng-repeat="marker in markers | filter : queryText | orderBy : 'title'"> -->
+          <ul ng-repeat="marker in markers1 | filter : queryText : marker.title">
+
+            <!-- {{marker.title}} {{markers[$index].title}} -->
+            <a href="#" ng-click="openInfoWindow($event, markers[$index])">{{marker.title}}  | Cars available:{{marker.cars_available}}</a>
+            <!-- {{markers.title}} -->
+            <!-- <p>{{marker.cars_available}}</p> -->
+          </ul>
+        </ul>
+
+      </div>
     </div>
+  </div>
+
+
+
 </div>

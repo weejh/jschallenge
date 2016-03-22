@@ -31,6 +31,7 @@ myCar.controller('MainCtrl', function($scope, $http) {
     var bounds  = new google.maps.LatLngBounds();
 
     $scope.markers = [];
+    $scope.markers1 =[];
 
 // info window
     var infoWindow = new google.maps.InfoWindow();
@@ -63,6 +64,9 @@ myCar.controller('MainCtrl', function($scope, $http) {
         });
 
         $scope.markers.push(marker);
+        $scope.markers1.push({'title': marker.title,
+                              'cars_available': marker.cars_available
+      });
 
 // store the new marker info, as to create auto zoom and auto center that fit all markers
         var loc = new google.maps.LatLng(marker.position.lat(), marker.position.lng());
@@ -82,6 +86,15 @@ myCar.controller('MainCtrl', function($scope, $http) {
     $scope.map.fitBounds(bounds);
     $scope.map.panToBounds(bounds);
 
+// console.log('json ' , $scope.markers);
+//
+// $scope.markers.forEach(function (e) {
+//   $scope.markers1.push({"title": e.title,
+//   "content" : e.content,
+//   "clickable": e.clickable
+// });
+// })
+// console.log($scope.markers1);
 
 // display detail based on selected marker
     $scope.openInfoWindow = function(e, selectedMarker){
