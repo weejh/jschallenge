@@ -71,21 +71,17 @@ myCar.controller('MainCtrl', function($scope, $http) {
     };
 
 // plot the map with the data external service
-    var drawMap =  function () {
-      $scope.map = new google.maps.Map(document.getElementById('map'), mapOptions);
+    $scope.map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
-      $scope.cars.forEach(function (car) {
-        createMarker(car);
+    $scope.cars.forEach(function (car) {
+      createMarker(car);
 
-      });
+    });
 
 // auto zoom and auto centre that fit all markers
-      $scope.map.fitBounds(bounds);
-      $scope.map.panToBounds(bounds);
-    };
+    $scope.map.fitBounds(bounds);
+    $scope.map.panToBounds(bounds);
 
-// plot map
-    drawMap();
 
 // display detail based on selected marker
     $scope.openInfoWindow = function(e, selectedMarker){
@@ -95,7 +91,8 @@ myCar.controller('MainCtrl', function($scope, $http) {
 
 // reset the map after close of info window
     google.maps.event.addListener(infoWindow, 'closeclick', function(){
-        drawMap();
+      $scope.map.fitBounds(bounds);
+      $scope.map.panToBounds(bounds);
     });
 
 

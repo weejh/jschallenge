@@ -82,8 +82,19 @@ body {
   }
 }
 
-#map {
+/*#map {
   width: 800px;
   height: 500px;
   background-color: #CCC;
+}*/
+#map {
+  height: 0;
+  padding-bottom: 56.25%;
+  padding-top: 30px;
+}
+@media (min-width: 44.375em) {
+  .map {
+    width: 60%;
+    float: left;
+  }
 }
