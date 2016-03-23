@@ -7,55 +7,24 @@
   <p><a class="btn btn-lg btn-success" ng-href="#/">Splendid!<span class="glyphicon glyphicon-ok"></span></a></p>
   <p>ps. go have a look at main.js for the api call</p>
 
-
-
 </div>
-
-<!-- <div >
-  <ul>
-    <li ng-repeat="car in cars">
-      <span>{{car.parking_shortname}}</span>
-      <span>{{car.latitude}}</span>
-      <span>{{car.longitude}}</span>
-    </li>
-  </ul>
-</div> -->
-
-
+<hr>
 <div >
-    <div id="map"></div>
-
-
-    <div>List of car availability</div>
-
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-2">
-      <!--Sidebar content-->
-
-        Search: <input type="search" ng-model="queryText">
-
+  <div id="map"></div>
+  <hr>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-4">
+        Location search: <input type="search" ng-model="queryText" placeholder="Type in the location ...">
       </div>
-
-
-      <div class="col-md-10">
-        <!--Body content-->
-
+      <div class="col-md-6">
         <ul class="marker">
-          <!-- <li ng-repeat="marker in markers | filter : queryText | orderBy : 'title'"> -->
-          <ul ng-repeat="marker in markers1 | filter : queryText : marker.title">
-
-            <!-- {{marker.title}} {{markers[$index].title}} -->
-            <a href="#" ng-click="openInfoWindow($event, markers[$index])">{{marker.title}}  | Cars available:{{marker.cars_available}}</a>
-            <!-- {{markers.title}} -->
-            <!-- <p>{{marker.cars_available}}</p> -->
+          <ul ng-repeat="marker in markers | filter : {title: queryText} | orderBy : 'title'">
+            {{$index+1}}.    <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.title}}</a>
+             <p> Cars available:  {{marker.cars_available}} </p>
           </ul>
         </ul>
-
       </div>
     </div>
   </div>
-
-
-
 </div>
